@@ -1,0 +1,106 @@
+<div class="row m-auto todo-list">
+  <div
+    class="card"
+    [ngClass]="getClassForBoard(board.title)"
+    *ngFor="let board of boards"
+  >
+    <div class="card-header">
+      <span>{{ board.title }}</span>
+      <div class="icons">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="add"
+          (click)="open(content, task)"
+        ></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="delete"
+          (click)="deleteAllTasks(board.title)"
+        ></mat-icon>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title" *ngFor="let task of board.tasks">
+        <div>
+          <mat-checkbox
+            [checked]="task.status"
+            (change)="toggleTaskStatus(task, board.title)"
+            (input)="boardService.updateLastEditTimestamp()"
+          >
+          </mat-checkbox>
+          <span>{{ task.title }}</span>
+        </div>
+        <div class="icons">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="edit"
+            (click)="open(content, task)"
+          ></mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="delete"
+            (click)="removeTask(board.title, task.id)"
+          ></mat-icon>
+        </div>
+      </h5>
+    </div>
+    <div class="card-footer">{{ diffHours }}</div>
+
+    <ng-template #content let-c="close" let-d="dismiss" let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          {{ board.title }}
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="d('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <label for="exampleDataList" class="form-label">Task title</label>
+          <input
+            class="form-control"
+            list="datalistOptions"
+            id="exampleDataList"
+            placeholder="Task title..."
+            [(ngModel)]="taskTitle"
+            required
+            #TaskTitle
+          />
+          <label for="exampleDataList" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            list="datalistOptions"
+            id="exampleDataList"
+            placeholder="Type to search..."
+            #TaskDisc
+            required
+            [(ngModel)]="discription"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            type="submit"
+            (click)="
+              isEditing
+                ? updateTask(board.title)
+                : addTask(TaskTitle, TaskDisc, board.title);
+              d('Cross click')
+            "
+          >
+            {{ isEditing ? "Update" : "Save" }}
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

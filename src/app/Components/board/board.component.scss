@@ -1,0 +1,130 @@
+.app-todo-list {
+  max-width: 50px;
+}
+.mat-mdc-card {
+  max-width: 50%;
+}
+.todo-list {
+  max-width: 95%;
+  height: 100vh;
+  margin: auto;
+}
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  .mat-icon {
+    cursor: pointer;
+  }
+}
+.card {
+  width: 30%;
+  min-width: 20rem;
+  min-height: 35em;
+  max-width: 100%;
+  margin: 20px;
+  padding: 0;
+  background-color: rgba(232, 232, 232, 0.513); /* Adjust opacity as needed */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.257); /* Add a shadow for depth */
+  // padding: 20px; /* Add padding to see the effect clearly */
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  .card-header {
+    padding: 15px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.896); /* Adjust opacity as needed */
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-radius: 0.5rem;
+    margin-top: 16px;
+    margin-inline: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+  }
+  .card-title {
+    margin: 10px;
+    margin-block: 15px;
+    padding: 5px;
+    background-color: rgb(255, 255, 255, 0.85); /* Adjust opacity as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+}
+.must-do {
+  background-color: #f3b2a6;
+  .card-header {
+    // background-color: #d4ffbf;
+  }
+}
+.should-do {
+  background-color: #c9effe;
+  .card-header {
+    // background-color: #c9effe;
+  }
+}
+
+.if-i-have-time {
+  // background-color: #feffd5;
+  .card-header {
+    // background-color: #16c784;
+  }
+}
+.card {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.25
+  ); /* Adjust the alpha value to control the transparency */
+  backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+  border-radius: 10px; /* Adjust the border radius as needed */
+  padding: 20px; /* Adjust padding as needed */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.card-footer {
+  color: rgb(235, 235, 235);
+  font-weight: 500;
+  text-align: center;
+  padding-bottom: 0;
+  border-top: 1px solid;
+  border-color: rgb(235, 235, 235);
+}
+
+.form {
+  input {
+    margin-bottom: 10px;
+  }
+}
+
+.modal-backdrop {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Adjust the alpha value to control the transparency */
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: rgba(
+    255,
+    0,
+    0,
+    0.25
+  ) !important; /* Adjust the alpha value to control the transparency */
+  backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+  border-radius: 10px; /* Adjust the border radius as needed */
+  padding: 20px; /* Adjust padding as needed */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Optional: Add a shadow */
+}
