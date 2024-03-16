@@ -1,0 +1,9 @@
+header {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  .bg-image {
+    width: 100%;
+    transform: translate3d(0px, -21%, 0px);
+  }
+}

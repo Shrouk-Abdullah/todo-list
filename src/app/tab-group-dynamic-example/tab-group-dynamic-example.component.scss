@@ -1,0 +1,25 @@
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  .mat-icon {
+    cursor: pointer;
+  }
+}
+.nav {
+  margin-top: -35px;
+  margin-bottom: 30px;
+  #nav-home-tab {
+    z-index: 1;
+    // border: 3px solid rgb(172, 172, 172);
+    background-color: rgba(13, 108, 37, 0.332);
+    border-bottom: none;
+    font-family: "Ropoto";
+    font-size: 22px;
+    border: none;
+    color: antiquewhite;
+    font-weight: 600;
+    letter-spacing: 2px;
+    box-shadow: inset 1px 1px 9px rgb(255, 255, 255); /* Add a shadow for depth */
+  }
+}
