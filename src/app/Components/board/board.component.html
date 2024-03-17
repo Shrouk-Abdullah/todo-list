@@ -1,3 +1,4 @@
+<div class="background-container"></div>
 <div class="row m-auto todo-list">
   <div
     class="card"
@@ -95,11 +96,6 @@
             >
               <span> Required </span>
             </div>
-            <small
-              *ngIf="TaskTitle.errors?.['pattern']"
-              class="alert alert-danger"
-              >Required</small
-            >
           </div>
           <label for="taskDisc" class="form-label">Description</label>
           <textarea
@@ -114,12 +110,6 @@
           <div [hidden]="TaskDisc.valid || TaskDisc.untouched">
             <div
               *ngIf="TaskDisc.errors?.['required']"
-              class="alert alert-danger"
-            >
-              Required
-            </div>
-            <div
-              *ngIf="TaskDisc.errors?.['pattern']"
               class="alert alert-danger"
             >
               Required

@@ -1,7 +1,22 @@
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/bg.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8); // Adjust the blur intensity as needed
+  box-shadow: none;
+  z-index: -1;
+}
+
 .todo-list {
   max-width: 95%;
   height: 100vh;
   margin: auto;
+  z-index: 10;
   @media only screen and (max-width: 375px) {
     margin: 0.2rem;
     max-width: min-content;
@@ -37,16 +52,13 @@
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(187, 187, 187, 0.742);
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 4px 6px 6px rgba(255, 255, 255, 0.583),
-    0 1px 3px rgba(255, 255, 255, 0.608);
   border: none;
+  box-shadow: 10px 6px 6px #274738, 0 1px 3px #274738;
   transition: transform 0.3s ease;
-  &:hover {
-    transform: scale(1.05);
-  }
+
   .card-header {
     padding: 15px;
     font-weight: 500;
@@ -59,19 +71,28 @@
     border-radius: 0.5rem;
     margin-top: 16px;
     margin-inline: 15px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 6px 6px #274738, 0 1px 3px #274738;
+    background-color: #2b6155;
+    color: #feffd5;
   }
+
   .card-title {
     margin: 10px;
     margin-block: 15px;
     padding: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px #1b3428;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #feffd5;
+    background-color: #739b8a;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.15);
+    }
   }
   @media only screen and (max-width: 768px) {
     flex: 0 0 calc(50% - 1rem);
@@ -127,53 +148,13 @@
   }
 }
 
-.must-do {
-  box-shadow: 10px 6px 6px #38496d, 0 1px 3px #38496d;
-  .card-header {
-    box-shadow: inherit;
-    background-color: #38496d;
-    color: #feffd5;
-  }
-  .card-title {
-    box-shadow: 10px 6px 6px #38496d, 0 1px 3px #38496d;
-    background-color: #455a8757;
-    color: #feffd5;
-  }
-}
-.should-do {
-  box-shadow: 10px 6px 6px #5b727e, 0 1px 3px #5b727e;
-  .card-header {
-    box-shadow: inherit;
-    color: #feffd5;
-    background-color: #5b727e;
-  }
-  .card-title {
-    box-shadow: 10px 6px 6px #5b727e, 0 1px 3px #5b727e;
-    background-color: #67818f6f;
-    color: #feffd5;
-  }
-}
-
-.if-i-have-time {
-  box-shadow: 10px 6px 6px #9bc9e28d, 0 1px 3px #9bc9e28d;
-  .card-header {
-    box-shadow: inherit;
-    color: #feffd5;
-    background-color: #9bc9e28d;
-  }
-  .card-title {
-    box-shadow: 10px 6px 6px #9bc9e28d, 0 1px 3px #9bc9e28d;
-    background-color: #8ab3c88a;
-    color: #feffd5;
-  }
-}
 .card-footer {
-  color: #d1dce3;
+  color: #173728;
   font-weight: 500;
   text-align: center;
   padding-bottom: 0;
   border-top: 2px solid;
-  border-color: #d1dce376;
+  border-color: #274738;
 }
 
 .ng-invalid:not(form) {
@@ -190,4 +171,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+form button {
+  background-color: #2b6155;
+  color: #feffd5;
+  border-color: #2b6155;
 }
