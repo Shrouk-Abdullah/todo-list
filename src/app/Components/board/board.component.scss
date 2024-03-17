@@ -1,14 +1,12 @@
-.app-todo-list {
-  max-width: 50px;
-}
-.mat-mdc-card {
-  max-width: 50%;
-}
-
 .todo-list {
   max-width: 95%;
   height: 100vh;
   margin: auto;
+  @media only screen and (max-width: 375px) {
+    margin: 0.2rem;
+    max-width: min-content;
+    gap: 23px;
+  }
 }
 .icons {
   display: flex;
@@ -19,20 +17,40 @@
     cursor: pointer;
   }
 }
+
+.form {
+  input {
+    margin-bottom: 10px;
+  }
+  .alert-danger {
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+  .text-area {
+    margin-bottom: 10px;
+  }
+}
 .card {
   width: 30%;
-  min-width: 20rem;
   min-height: 35em;
   max-width: 100%;
   margin: 20px;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 4px 6px 6px rgba(255, 255, 255, 0.583),
+    0 1px 3px rgba(255, 255, 255, 0.608);
+  border: none;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
   .card-header {
     padding: 15px;
     font-weight: 500;
-    background-color: rgba(255, 255, 255, 0.896); /* Adjust opacity as needed */
-    font-size: 15px;
+    font-size: 1.1em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -41,46 +59,81 @@
     border-radius: 0.5rem;
     margin-top: 16px;
     margin-inline: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
   }
   .card-title {
     margin: 10px;
     margin-block: 15px;
     padding: 5px;
-    background-color: #455a8757; /* Adjust opacity as needed */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 15px;
+    font-size: 1.1em;
     color: #feffd5;
+  }
+  @media only screen and (max-width: 768px) {
+    flex: 0 0 calc(50% - 1rem);
+  }
+  @media only screen and (max-width: 576px) {
+    flex: 0 0 calc(100% - 1rem);
+    .icons {
+      justify-content: space-between;
+    }
+    .icons mat-icon {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-footer {
+      text-align: right;
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    margin: auto;
+    min-width: 80vw;
+    padding-inline: 10vw;
+    flex: 1 1 auto;
+    .card-header {
+      margin: auto;
+      flex: 0 1 auto;
+      width: auto;
+      min-width: 20vw;
+      max-width: 80vw;
+      flex-wrap: wrap;
+    }
+    .card-body {
+      padding-inline: 0;
+    }
+    .card-title {
+      flex-wrap: wrap;
+      flex: 0 1 auto;
+      margin: auto;
+      margin-inline: 2px;
+      max-width: 80vw;
+    }
+    .card-footer {
+      flex-wrap: wrap;
+      flex: 0 1 auto;
+      margin: auto;
+      max-width: 80vw;
+      padding-inline: 0;
+    }
   }
 }
 
-.card {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.25
-  ); /* Adjust the alpha value to control the transparency */
-  backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
-  border-radius: 10px; /* Adjust the border radius as needed */
-  padding: 20px; /* Adjust padding as needed */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease; /* Add transition for transform property */
-  &:hover {
-    transform: scale(1.05); /* Increase scale on hover */
-  }
-}
 .must-do {
   .card-header {
     background-color: #38496d;
     color: #feffd5;
   }
   .card-title {
-    background-color: #455a8757; /* Adjust opacity as needed */
+    background-color: #455a8757;
     color: #feffd5;
   }
 }
@@ -90,7 +143,7 @@
     background-color: #5b727e;
   }
   .card-title {
-    background-color: #67818f6f; /* Adjust opacity as needed */
+    background-color: #67818f6f;
     color: #feffd5;
   }
 }
@@ -101,7 +154,7 @@
     background-color: #9bc9e28d;
   }
   .card-title {
-    background-color: #8ab3c88a; /* Adjust opacity as needed */
+    background-color: #8ab3c88a;
     color: #feffd5;
   }
 }
@@ -114,35 +167,8 @@
   border-color: #d1dce376;
 }
 
-.form {
-  input {
-    margin-bottom: 10px;
-  }
-}
-
-.modal-backdrop {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.5
-  ); /* Adjust the alpha value to control the transparency */
-  backdrop-filter: blur(5px);
-}
-
-.ng-valid.required {
-  border-left: 5px solid #42a948; /* green */
-}
-
 .ng-invalid:not(form) {
-  border-left: 5px solid #a94442; /* red */
-}
-.alert-danger {
-  padding: 8px; /* Adjust the padding to control the height */
-  margin-bottom: 6px;
-}
-.text-area {
-  margin-bottom: 10px;
+  border-left: 5px solid #a94442;
 }
 
 .taskTitle {

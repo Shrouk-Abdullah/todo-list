@@ -50,8 +50,11 @@
         </div>
       </h5>
     </div>
-    <div class="card-footer">{{ diffHours }}</div>
-    <ng-template #content let-c="close" let-d="dismiss" let-modal>
+    <div class="card-footer" *ngFor="let task of board.tasks">
+      {{ task.diffHours }}
+    </div>
+
+    <ng-template #content let-c="close" let-d="dismiss">
       <div class="modal-header">
         <span class="modal-title bold" id="modal-basic-title">
           {{ board.title }}
@@ -63,7 +66,7 @@
           (click)="d('Cross click')"
         ></button>
       </div>
-      <div class="modal-body p-10 pb-0">
+      <div class="modal-body pb-0">
         <form
           #taskForm="ngForm"
           class="form"
@@ -122,7 +125,7 @@
               Required
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer w-100 px-0">
             <button
               type="button"
               class="btn btn-outline-dark w-100"

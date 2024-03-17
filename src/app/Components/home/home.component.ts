@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TasksService } from '../../Services/tasks.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -8,11 +7,8 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  deleteTask(i: number) {
-    this.taskService.deleteTask(i);
-  }
-  constructor(public taskService: TasksService, private title: Title) {
-    this.title.setTitle('Home');
+  constructor(private title: Title) {
+    this.title.setTitle('Tasks');
   }
   ngOnInit(): void {}
 }

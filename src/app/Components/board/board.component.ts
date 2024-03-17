@@ -3,7 +3,6 @@ import { Task } from '../../Models/task';
 import { BoardService } from '../../Services/board.service';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Board, BoardTitle } from '../../Models/board';
-BoardTitle;
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -12,16 +11,13 @@ BoardTitle;
 })
 export class BoardComponent {
   boards: Board[] = [];
-  newTaskTitle: string = '';
   selectedBoard!: string;
   discription!: string;
   taskId!: number;
-  lastEditTimestamp: Date | null = null;
-  diffHours!: any;
+  diffHours!: string;
   task!: Task;
-  modalTitle: any;
   taskTitle!: string;
-  isEditing: any;
+  isEditing!: boolean;
   status!: boolean;
   getClassForBoard(boardTitle: BoardTitle): string {
     switch (boardTitle) {
@@ -52,51 +48,45 @@ export class BoardComponent {
   }
   constructor(
     public boardService: BoardService,
-    config: NgbModalConfig,
     private modalService: NgbModal
   ) {
     this.boards = this.boardService.getAllBoards();
+  }
 
-    if (typeof window !== 'undefined') {
-      this.diffHours = localStorage.getItem('last edit');
-    }
-  }
-  getBoard(title: string) {
-    this.boardService.getBoardByTitle(title);
-  }
-  addTask(title: any, discription: any, selectedBoard: string): void {
-    this.selectedBoard = selectedBoard;
-    if (this.selectedBoard) {
-      console.log(this.selectedBoard);
-      this.boardService.addTaskToBoard(this.selectedBoard, {
+  addTask(title: any, discription: any, selectedBoard: BoardTitle): void {
+    this.boardService.updateLastEditTimestamp();
+    if (selectedBoard) {
+      this.boardService.addTaskToBoard(selectedBoard, {
         title,
         discription,
         status: this.status,
+        diffHours: this.diffHours,
       });
     }
-    this.boardService.updateLastEditTimestamp();
   }
   removeTask(selectedBoard: BoardTitle, taskId: number): void {
+    this.boardService.updateLastEditTimestamp();
     if (selectedBoard) {
       this.boardService.removeTaskFromBoard(selectedBoard, taskId);
     }
-    this.boardService.updateLastEditTimestamp();
   }
 
   updateTask(title: string) {
+    this.boardService.updateLastEditTimestamp();
     this.boardService.editTaskFromBoard(title, this.taskId, {
       title: this.taskTitle,
       discription: this.discription,
       status: this.status,
+      diffHours: this.diffHours,
     });
-    this.boardService.updateLastEditTimestamp();
   }
   toggleTaskStatus(task: Task, boardTitle: BoardTitle) {
+    this.boardService.updateLastEditTimestamp();
     task.status = !task.status;
     this.boardService.editTaskFromBoard(boardTitle, this.taskId, task);
-    this.boardService.updateLastEditTimestamp();
   }
   deleteAllTasks(title: string) {
+    this.boardService.updateLastEditTimestamp();
     this.boardService.removeAllTaskFromBoard(title);
   }
 }

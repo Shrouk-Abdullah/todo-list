@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { TasksService } from './tasks.service';
 import { Task } from '../Models/task';
 import { Board, BoardTitle } from '../Models/board';
 import { title } from 'node:process';
@@ -12,7 +11,7 @@ export class BoardService {
   board!: Board[];
   lastEditTimestamp!: Date;
   diffHours!: any;
-  constructor(public taskService: TasksService) {
+  constructor() {
     if (typeof window !== 'undefined') {
       const storedBoards = localStorage.getItem('boards');
       this.board = [
@@ -35,13 +34,12 @@ export class BoardService {
   }
 
   getBoardByTitle(title: string) {
-    console.log('l');
     return this.board.find((board) => board.title === title);
   }
 
   addTaskToBoard(
-    title: string,
-    task: { title: any; discription: any; status: boolean }
+    title: BoardTitle,
+    task: { title: any; discription: any; status: boolean; diffHours: any }
   ): void {
     const board = this.getBoardByTitle(title);
     if (board) {
@@ -50,6 +48,7 @@ export class BoardService {
         title: task.title.value,
         status: task.status || false,
         discription: task.discription.value,
+        diffHours: this.diffHours,
       });
       this.storeBoards();
       console.log(board);
@@ -75,13 +74,13 @@ export class BoardService {
     const diffMs = now.getTime() - this.lastEditTimestamp.getTime();
     this.diffHours = Math.floor(diffMs / (1000 * 60 * 60)); // Convert milliseconds to hours
     if (this.diffHours === 0) {
-      localStorage.setItem('last edit', 'Less than an hour ago');
+      // localStorage.setItem('last edit', 'Less than an hour ago');
       return (this.diffHours = 'Less than an hour ago');
     } else if (this.diffHours === 1) {
-      localStorage.setItem('last edit', '1 hour ago');
+      // localStorage.setItem('last edit', '1 hour ago');
       return (this.diffHours = '1 hour ago');
     } else {
-      localStorage.setItem('last edit', `${this.diffHours} hours ago`);
+      // localStorage.setItem('last edit', `${this.diffHours} hours ago`);
 
       return `${this.diffHours} hours ago`;
     }
@@ -89,7 +88,7 @@ export class BoardService {
   editTaskFromBoard(
     title: string,
     taskId: number,
-    task: { title: any; discription: any; status: boolean }
+    task: { title: any; discription: any; status: boolean; diffHours: any }
   ): void {
     let board = this.getBoardByTitle(title);
     console.log(board, 'kknk');
@@ -103,6 +102,7 @@ export class BoardService {
           title: task.title,
           status: task.status,
           discription: task.discription,
+          diffHours: this.diffHours,
         };
         board.tasks[taskIndex] = updatedTask;
       }
