@@ -23,14 +23,16 @@
     </div>
     <div class="card-body">
       <h5 class="card-title" *ngFor="let task of board.tasks">
-        <div>
+        <div class="taskTitle">
           <mat-checkbox
+            class="custom-checkbox"
             [checked]="task.status"
             (change)="toggleTaskStatus(task, board.title)"
             (input)="boardService.updateLastEditTimestamp()"
+            color="primary"
           >
           </mat-checkbox>
-          <span>{{ task.title }}</span>
+          <span class="taskText">{{ task.title }}</span>
         </div>
         <div class="icons">
           <mat-icon
@@ -49,12 +51,11 @@
       </h5>
     </div>
     <div class="card-footer">{{ diffHours }}</div>
-
     <ng-template #content let-c="close" let-d="dismiss" let-modal>
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
+        <span class="modal-title bold" id="modal-basic-title">
           {{ board.title }}
-        </h4>
+        </span>
         <button
           type="button"
           class="btn-close"
@@ -62,44 +63,76 @@
           (click)="d('Cross click')"
         ></button>
       </div>
-      <div class="modal-body">
-        <div class="form">
-          <label for="exampleDataList" class="form-label">Task title</label>
+      <div class="modal-body p-10 pb-0">
+        <form
+          #taskForm="ngForm"
+          class="form"
+          (ngSubmit)="
+            isEditing
+              ? updateTask(board.title)
+              : addTask(TaskTitle, TaskDisc, board.title);
+            d('Cross click')
+          "
+        >
+          <label for="taskTitle" class="form-label">Task title</label>
           <input
-            class="form-control"
-            list="datalistOptions"
-            id="exampleDataList"
+            class="form-control ng-valid"
+            name="taskTitle"
+            id="taskTitle"
             placeholder="Task title..."
             [(ngModel)]="taskTitle"
             required
-            #TaskTitle
+            #TaskTitle="ngModel"
           />
-          <label for="exampleDataList" class="form-label">Description</label>
+          <!---     {{ TaskTitle.className | json }}--->
+          <div [hidden]="TaskTitle.valid || TaskTitle.untouched">
+            <div
+              *ngIf="TaskTitle.errors?.['required']"
+              class="alert alert-danger"
+            >
+              <span> Required </span>
+            </div>
+            <small
+              *ngIf="TaskTitle.errors?.['pattern']"
+              class="alert alert-danger"
+              >Required</small
+            >
+          </div>
+          <label for="taskDisc" class="form-label">Description</label>
           <textarea
-            class="form-control"
-            list="datalistOptions"
-            id="exampleDataList"
+            class="form-control ng-valid text-area"
+            id="taskDisc"
+            name="taskDisc"
             placeholder="Type to search..."
-            #TaskDisc
+            #TaskDisc="ngModel"
             required
             [(ngModel)]="discription"
           ></textarea>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-outline-dark"
-            type="submit"
-            (click)="
-              isEditing
-                ? updateTask(board.title)
-                : addTask(TaskTitle, TaskDisc, board.title);
-              d('Cross click')
-            "
-          >
-            {{ isEditing ? "Update" : "Save" }}
-          </button>
-        </div>
+          <div [hidden]="TaskDisc.valid || TaskDisc.untouched">
+            <div
+              *ngIf="TaskDisc.errors?.['required']"
+              class="alert alert-danger"
+            >
+              Required
+            </div>
+            <div
+              *ngIf="TaskDisc.errors?.['pattern']"
+              class="alert alert-danger"
+            >
+              Required
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark w-100"
+              type="submit"
+              [disabled]="taskForm.invalid"
+            >
+              {{ isEditing ? "Update" : "Save" }}
+            </button>
+          </div>
+        </form>
       </div>
     </ng-template>
   </div>

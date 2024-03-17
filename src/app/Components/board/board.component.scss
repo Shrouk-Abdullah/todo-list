@@ -4,6 +4,7 @@
 .mat-mdc-card {
   max-width: 50%;
 }
+
 .todo-list {
   max-width: 95%;
   height: 100vh;
@@ -13,6 +14,7 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+
   .mat-icon {
     cursor: pointer;
   }
@@ -24,12 +26,6 @@
   max-width: 100%;
   margin: 20px;
   padding: 0;
-  background-color: rgba(232, 232, 232, 0.513); /* Adjust opacity as needed */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.257); /* Add a shadow for depth */
-  // padding: 20px; /* Add padding to see the effect clearly */
-  backdrop-filter: blur(10px);
-  border: none;
-  border-radius: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   .card-header {
@@ -51,34 +47,17 @@
     margin: 10px;
     margin-block: 15px;
     padding: 5px;
-    background-color: rgb(255, 255, 255, 0.85); /* Adjust opacity as needed */
+    background-color: #455a8757; /* Adjust opacity as needed */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 15px;
-  }
-}
-.must-do {
-  background-color: #f3b2a6;
-  .card-header {
-    // background-color: #d4ffbf;
-  }
-}
-.should-do {
-  background-color: #c9effe;
-  .card-header {
-    // background-color: #c9effe;
+    color: #feffd5;
   }
 }
 
-.if-i-have-time {
-  // background-color: #feffd5;
-  .card-header {
-    // background-color: #16c784;
-  }
-}
 .card {
   background: rgba(
     255,
@@ -90,14 +69,49 @@
   border-radius: 10px; /* Adjust the border radius as needed */
   padding: 20px; /* Adjust padding as needed */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease; /* Add transition for transform property */
+  &:hover {
+    transform: scale(1.05); /* Increase scale on hover */
+  }
+}
+.must-do {
+  .card-header {
+    background-color: #38496d;
+    color: #feffd5;
+  }
+  .card-title {
+    background-color: #455a8757; /* Adjust opacity as needed */
+    color: #feffd5;
+  }
+}
+.should-do {
+  .card-header {
+    color: #feffd5;
+    background-color: #5b727e;
+  }
+  .card-title {
+    background-color: #67818f6f; /* Adjust opacity as needed */
+    color: #feffd5;
+  }
+}
+
+.if-i-have-time {
+  .card-header {
+    color: #feffd5;
+    background-color: #9bc9e28d;
+  }
+  .card-title {
+    background-color: #8ab3c88a; /* Adjust opacity as needed */
+    color: #feffd5;
+  }
 }
 .card-footer {
-  color: rgb(235, 235, 235);
+  color: #d1dce3;
   font-weight: 500;
   text-align: center;
   padding-bottom: 0;
-  border-top: 1px solid;
-  border-color: rgb(235, 235, 235);
+  border-top: 2px solid;
+  border-color: #d1dce376;
 }
 
 .form {
@@ -116,15 +130,29 @@
   backdrop-filter: blur(5px);
 }
 
-.modal-content {
-  background-color: rgba(
-    255,
-    0,
-    0,
-    0.25
-  ) !important; /* Adjust the alpha value to control the transparency */
-  backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
-  border-radius: 10px; /* Adjust the border radius as needed */
-  padding: 20px; /* Adjust padding as needed */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Optional: Add a shadow */
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}
+.alert-danger {
+  padding: 8px; /* Adjust the padding to control the height */
+  margin-bottom: 6px;
+}
+.text-area {
+  margin-bottom: 10px;
+}
+
+.taskTitle {
+  display: grid;
+  grid-template-columns: min-content auto;
+  align-items: center;
+}
+
+.taskText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
