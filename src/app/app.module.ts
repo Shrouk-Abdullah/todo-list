@@ -31,10 +31,6 @@ import { Routes } from '@angular/router';
 import { BoardComponent } from './Components/board/board.component';
 // import { TaskComponent } from './Services/task/task.component';
 
-export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: '""', component: NotFoundComponent },
-];
 @NgModule({
   declarations: [
     AppComponent,

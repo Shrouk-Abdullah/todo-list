@@ -6,5 +6,6 @@ export enum BoardTitle {
 }
 export interface Board {
   title: BoardTitle;
+  diffHours: string;
   tasks: Task[];
 }

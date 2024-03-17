@@ -128,32 +128,41 @@
 }
 
 .must-do {
+  box-shadow: 10px 6px 6px #38496d, 0 1px 3px #38496d;
   .card-header {
+    box-shadow: inherit;
     background-color: #38496d;
     color: #feffd5;
   }
   .card-title {
+    box-shadow: 10px 6px 6px #38496d, 0 1px 3px #38496d;
     background-color: #455a8757;
     color: #feffd5;
   }
 }
 .should-do {
+  box-shadow: 10px 6px 6px #5b727e, 0 1px 3px #5b727e;
   .card-header {
+    box-shadow: inherit;
     color: #feffd5;
     background-color: #5b727e;
   }
   .card-title {
+    box-shadow: 10px 6px 6px #5b727e, 0 1px 3px #5b727e;
     background-color: #67818f6f;
     color: #feffd5;
   }
 }
 
 .if-i-have-time {
+  box-shadow: 10px 6px 6px #9bc9e28d, 0 1px 3px #9bc9e28d;
   .card-header {
+    box-shadow: inherit;
     color: #feffd5;
     background-color: #9bc9e28d;
   }
   .card-title {
+    box-shadow: 10px 6px 6px #9bc9e28d, 0 1px 3px #9bc9e28d;
     background-color: #8ab3c88a;
     color: #feffd5;
   }

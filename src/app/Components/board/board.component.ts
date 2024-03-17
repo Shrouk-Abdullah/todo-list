@@ -54,39 +54,46 @@ export class BoardComponent {
   }
 
   addTask(title: any, discription: any, selectedBoard: BoardTitle): void {
-    this.boardService.updateLastEditTimestamp();
+    this.diffHours = this.boardService.updateLastEditTimestamp();
     if (selectedBoard) {
-      this.boardService.addTaskToBoard(selectedBoard, {
+      this.boardService.addTaskToBoard(selectedBoard, this.diffHours, {
         title,
         discription,
         status: this.status,
-        diffHours: this.diffHours,
       });
     }
   }
   removeTask(selectedBoard: BoardTitle, taskId: number): void {
-    this.boardService.updateLastEditTimestamp();
+    this.diffHours = this.boardService.updateLastEditTimestamp();
     if (selectedBoard) {
-      this.boardService.removeTaskFromBoard(selectedBoard, taskId);
+      this.boardService.removeTaskFromBoard(
+        selectedBoard,
+        this.diffHours,
+        taskId
+      );
     }
   }
 
   updateTask(title: string) {
-    this.boardService.updateLastEditTimestamp();
-    this.boardService.editTaskFromBoard(title, this.taskId, {
+    this.diffHours = this.boardService.updateLastEditTimestamp();
+    this.boardService.editTaskFromBoard(title, this.taskId, this.diffHours, {
       title: this.taskTitle,
       discription: this.discription,
       status: this.status,
-      diffHours: this.diffHours,
     });
   }
   toggleTaskStatus(task: Task, boardTitle: BoardTitle) {
-    this.boardService.updateLastEditTimestamp();
+    this.diffHours = this.boardService.updateLastEditTimestamp();
     task.status = !task.status;
-    this.boardService.editTaskFromBoard(boardTitle, this.taskId, task);
+    this.boardService.editTaskFromBoard(
+      boardTitle,
+      this.taskId,
+      this.diffHours,
+      task
+    );
   }
   deleteAllTasks(title: string) {
-    this.boardService.updateLastEditTimestamp();
-    this.boardService.removeAllTaskFromBoard(title);
+    this.diffHours = this.boardService.updateLastEditTimestamp();
+    this.boardService.removeAllTaskFromBoard(title, this.diffHours);
   }
 }

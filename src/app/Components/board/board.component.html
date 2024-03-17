@@ -50,8 +50,8 @@
         </div>
       </h5>
     </div>
-    <div class="card-footer" *ngFor="let task of board.tasks">
-      {{ task.diffHours }}
+    <div class="card-footer">
+      {{ board.diffHours }}
     </div>
 
     <ng-template #content let-c="close" let-d="dismiss">
