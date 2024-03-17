@@ -4,7 +4,7 @@ Welcome to the Todo List Web App! This application helps you organize your tasks
 
 ## Deployed Version
 
-You can access the deployed version of this application at [https://your-deployed-url.com](https://your-deployed-url.com).
+You can access the deployed version of this application at [https://todo-list.com](https://todo-list-iota-amber.vercel.app/)
 
 ## Technologies Used
 
